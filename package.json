@@ -1,0 +1,11 @@
+{
+  "name": "new-react-app",
+  "version": "0.0.1",
+  "description": "React template node.js+mongoose/react+redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maksim Skvortsov",
+  "license": "MIT"
+}

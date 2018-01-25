@@ -1,0 +1,8 @@
+node_modules
+public/assets/js/
+.directory
+public/index.html
+public/assets/css
+package-lock.json
+config.dev.json
+config.prod.json

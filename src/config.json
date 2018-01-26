@@ -1,3 +1,4 @@
 {
-    "port": 4100
+    "port": 4100,
+    "serveStatic": true
 }

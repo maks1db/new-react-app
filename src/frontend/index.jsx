@@ -8,6 +8,7 @@ import createHistory from 'history/createBrowserHistory';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+import 'scss/index.scss';
 
 const initialState = window.__INITIAL_STATE__ || {};
 

@@ -7,3 +7,5 @@ if (process.env.DEV || !process.env.BROWSER){
 }
 
 API_PREFIX += '/api/v1';
+
+export const message = () => axios.get(`${API_PREFIX}/main/msg`); 

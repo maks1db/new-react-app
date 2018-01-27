@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getMessage as getMessageAction } from '../actions';
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        message: state.app.message
+    };
 }
 
 function mapDispatcToProps(dispatch) {
-    return {};
+    return {
+        getMessage: () => dispatch(getMessageAction())
+    };
 }
 
 @connect(mapStateToProps, mapDispatcToProps)
@@ -16,11 +21,17 @@ export default class Main extends Component {
         super();
     }
 
+    componentDidMount() {
+        this.props.getMessage();
+    }
+
     render() {
+
+        const { message } = this.props;
 
         return (
             <div>
-                <h1>Full react app</h1>
+                <h1>{message.text}</h1>
             </div>
         );
     }

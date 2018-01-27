@@ -1,3 +1,3 @@
-module.exports.hello = (req, res) => {
-    res.json({message: 'hello'});
+module.exports.msg = (req, res) => {
+    res.json({message: 'New react app'});
 };

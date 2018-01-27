@@ -1,38 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import JspReplace from 'frontend/jsp_replace';
+import VarReplace from 'frontend/var-replace';
 import path from 'path';
 import configureStore from 'store';
 import { Provider } from 'react-redux';
-const { getGalleryItems } = require('actions');
 import App from 'frontend/App.jsx';
+import { RoutingContext, match } from 'react-router';
+import routes from 'frontend/routes.jsx';
 
 module.exports = (req, res) => {
     const store = configureStore();
-    const JspVars = new JspReplace({
+    const varReplace = new VarReplace({
         entry: path.resolve(__dirname, '../../frontend/template', 'index.html')
     });
     const version = require('../../../package.json').version;
-    JspVars.replace('{version}',  version);
+    varReplace.replace('{version}',  version);
     let publicPath = '/assets';
 
-    JspVars
+    varReplace
         .replace('${js-path}', publicPath + '/js/')
         .replace('${link-path}',`<link rel="stylesheet" href="${publicPath}/css/styles.min.css?v=${version}">`);
 
-    store.dispatch(getGalleryItems())
-        .then(() => {
-            const componentHTML = ReactDOM.renderToString(
-                <Provider store={store}>
-                    <App />
-                </Provider>  
-            );   
+    match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+        var a = 1;    
+    });
+    // store.dispatch(getGalleryItems())
+    //     .then(() => {
+            // const componentHTML = ReactDOM.renderToString(
+            //     <Provider store={store}>
+            //         <App />
+            //     </Provider>  
+            // );   
         
-            JspVars
-                .replace('${content}', componentHTML)
-                .replace('${initial-state}',
-                    `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`);
-            res.end(JspVars.getText());
-        });
+            // JspVars
+            //     .replace('${content}', componentHTML)
+            //     .replace('${initial-state}',
+            //         `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}`);
+            // res.end(JspVars.getText());
+        // });
     
 };
